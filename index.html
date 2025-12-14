@@ -80,6 +80,69 @@
             white-space: nowrap;
         }
 
+        /* Гамбургер-меню */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: 0.3s;
+            padding: 10px 30px;
+        }
+        .mobile-menu a:hover {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+
         /* --- HERO --- */
         .hero { padding: 180px 0 100px; position: relative; }
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
@@ -309,8 +372,8 @@
         @media (max-width: 900px) {
             nav { width: 92%; top: 15px; padding: 8px 12px; justify-content: space-between; left: 50%; transform: translateX(-50%); }
             .logo-box { font-size: 0.75rem; padding: 5px 10px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
-            .nav-links a.link-item { display: none; }
-            .nav-btn { margin-left: 5px; padding: 8px 14px; font-size: 0.75rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
 
             .container { padding: 0 20px; }
             .hero { padding-top: 140px; }
@@ -357,7 +420,23 @@
             <a href="#survey" class="link-item">Анкета</a>
             <a href="#feedback" class="nav-btn">Контакты</a>
         </div>
+        <!-- Гамбургер-кнопка (видна только на мобильных) -->
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="toggleMobileMenu()">О болезни</a>
+        <a href="#med-rehab" onclick="toggleMobileMenu()">Лечение</a>
+        <a href="#exercises" onclick="toggleMobileMenu()">Упражнения</a>
+        <a href="#self-control" onclick="toggleMobileMenu()">Реабилитация</a>
+        <a href="#survey" onclick="toggleMobileMenu()">Анкета</a>
+        <a href="#feedback" onclick="toggleMobileMenu()">Контакты</a>
+    </div>
 
     <!-- Hero -->
     <header class="hero">
@@ -1107,6 +1186,21 @@
         
         // Скрипт для отправки формы в Google Forms
         var submitted = false;
+
+        // Скрипт для мобильного меню
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Закрытие мобильного меню при клике на фон
+        document.getElementById('mobileMenu')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleMobileMenu();
+            }
+        });
 
         // Скрипт для раскрытия упражнений
         function toggleEx(btn) {
