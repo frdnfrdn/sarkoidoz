@@ -791,7 +791,7 @@
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {alert('Спасибо! Ваши ответы успешно отправлены в базу данных.');}"></iframe>
 
                 <!-- FORM Action = Ссылка на Google Form Response -->
-                <form id="googleForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfuTlJ-GCRlv50GphGR-rCLUr9d2eKnzcljTSwjX-L-Mbnqnw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+                <form id="googleForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfuTlJ-GCRlv50GphGR-rCLUr9d2eKnzcljTSwjX-L-Mbnqnw/formResponse" method="POST" onsubmit="submitted=true;">
                     
                     <!-- 1. Общее -->
                     <fieldset>
@@ -838,9 +838,12 @@
                                 <label class="check-label"><input type="checkbox" name="entry.1586579355" value="Хроническая усталость"> Хроническая усталость</label>
                                 <label class="check-label"><input type="checkbox" name="entry.1586579355" value="Кашель"> Кашель</label>
                                 <label class="check-label"><input type="checkbox" name="entry.1586579355" value="Боль в суставах/мышцах"> Боль в суставах/мышцах</label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="entry.1586579355" value="__other_option__"> Другое:
+                                </label>
                             </div>
                             <div style="margin-top:10px;">
-                                <input type="text" name="entry.1586579355" placeholder="Другое (укажите)" class="text-input">
+                                <input type="text" name="entry.1586579355.other_option_response" placeholder="Укажите другое" class="text-input">
                             </div>
                         </div>
 
@@ -952,9 +955,12 @@
                                 <label class="check-label"><input type="checkbox" name="entry.86385379" value="Дыхательные упражнения"> Дыхательные упражнения</label>
                                 <label class="check-label"><input type="checkbox" name="entry.86385379" value="Скандинавская ходьба"> Скандинавская ходьба</label>
                                 <label class="check-label"><input type="checkbox" name="entry.86385379" value="Йога/Стретчинг"> Йога/Стретчинг</label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="entry.86385379" value="__other_option__"> Другое:
+                                </label>
                             </div>
                              <div style="margin-top:10px;">
-                                <input type="text" name="entry.86385379" placeholder="Другое (укажите)" class="text-input">
+                                <input type="text" name="entry.86385379.other_option_response" placeholder="Укажите другое" class="text-input">
                             </div>
                         </div>
                     </fieldset>
@@ -990,6 +996,7 @@
                             <div class="radio-group">
                                 <label class="check-label"><input type="radio" name="entry.201815014" value="Да"> Да</label>
                                 <label class="check-label"><input type="radio" name="entry.201815014" value="Нет"> Нет</label>
+                                <label class="check-label"><input type="radio" name="entry.201815014" value="Возможно"> Возможно</label>
                             </div>
                         </div>
 
@@ -1027,6 +1034,12 @@
                                 <label class="check-label"><input type="checkbox" name="entry.1052492061" value="О физических нагрузках"> О физических нагрузках</label>
                                 <label class="check-label"><input type="checkbox" name="entry.1052492061" value="О питании"> О питании</label>
                                 <label class="check-label"><input type="checkbox" name="entry.1052492061" value="О психологической поддержке"> О психологической поддержке</label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="entry.1052492061" value="__other_option__"> Другое:
+                                </label>
+                            </div>
+                            <div style="margin-top:10px;">
+                                <input type="text" name="entry.1052492061.other_option_response" placeholder="Укажите другое" class="text-input">
                             </div>
                         </div>
 
