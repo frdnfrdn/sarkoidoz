@@ -6,7 +6,7 @@ import sys
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # Список видео для конвертации
-videos_to_convert = ['video3.MOV']
+videos_to_convert = ['video6.MOV']
 
 print("Начинаю конвертацию видео из MOV в MP4...")
 print("=" * 50)

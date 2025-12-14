@@ -200,14 +200,30 @@
              object-fit: contain; /* Это сохранит пропорции видео внутри блока */
          }
 
-        /* Раскрывашка */
-        .expand-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); }
-        .expand-btn {
-            background: none; border: 1px solid var(--primary); color: var(--primary);
-            padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem;
-            margin-top: 15px; transition: 0.3s;
-        }
-        .expand-btn:hover { background: var(--primary); color: white; }
+         /* Переключатель видео */
+         .video-switcher {
+             display: flex; gap: 8px; margin: 15px 0; justify-content: center;
+         }
+         .video-switch-btn {
+             background: rgba(37, 99, 235, 0.1); border: 1px solid var(--primary);
+             color: var(--primary); padding: 6px 12px; border-radius: 15px;
+             cursor: pointer; font-size: 0.8rem; transition: 0.3s;
+             font-weight: 500;
+         }
+         .video-switch-btn:hover { background: rgba(37, 99, 235, 0.2); }
+         .video-switch-btn.active { 
+             background: var(--primary); color: white; 
+             box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+         }
+
+         /* Раскрывашка */
+         .expand-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); }
+         .expand-btn {
+             background: none; border: 1px solid var(--primary); color: var(--primary);
+             padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem;
+             margin-top: 15px; transition: 0.3s;
+         }
+         .expand-btn:hover { background: var(--primary); color: white; }
 
          /* Стиль для PNG картинок внутри карточек */
          .glass-img {
@@ -510,7 +526,7 @@
                         <ul class="clean-list">
                              <li><i class="fa-solid fa-check"></i> Толерантность</li>
                              <li><i class="fa-solid fa-check"></i> Функция ФВД</li>
-                             <li><i class="fa-solid fa-check"></i> Мышцы дыхания</li>
+                             <li><i class="fa-solid fa-check"></i> Укрепить мышцы, участвующие в акте дыхания</li>
                         </ul>
                     </div>
                 </div>
@@ -543,7 +559,7 @@
                          <div class="expand-content">
                              <p style="font-size: 0.9rem;">
                                  <strong>ИП:</strong> лёжа на спине с согнутыми ногами, одна рука располагается на груди, другая — на животе.<br>
-                                 <strong>На вдохе:</strong> живот медленно выпячивается (рука на животе поднимается).<br>
+                                 <strong>На вдохе:</strong> живот медленно выпячивается (рука на животе).<br>
                                  <strong>На выдохе:</strong> живот втягивается. Выдох должен быть продолжительнее вдоха (соотношение 1:2).
                              </p>
                          </div>
@@ -572,8 +588,18 @@
                  <!-- 3 -->
                  <div class="glass-card video-card" data-aos="fade-up" data-aos-delay="200">
                      <div style="flex-grow: 1;">
-                         <div class="video-container"><video controls src="Videos/video3.mp4"></video></div>
-                         <h3>3. Объем вдоха</h3>
+                         <div class="video-container">
+                             <video id="video3" controls src="Videos/video3.mp4"></video>
+                         </div>
+                         
+                         <!-- Переключатель видео -->
+                         <div class="video-switcher">
+                             <button class="video-switch-btn active" onclick="switchVideo('video3', 'Videos/video3.mp4', this)">Базовое</button>
+                             <button class="video-switch-btn" onclick="switchVideo('video3', 'Videos/video5.mp4', this)">Вариант 2</button>
+                             <button class="video-switch-btn" onclick="switchVideo('video3', 'Videos/video6.mp4', this)">Вариант 3</button>
+                         </div>
+                         
+                         <h3>3. Объем вдоха + Объем выдоха</h3>
                          <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 10px;">Профилактика ателектазов (спадения участков легкого).</p>
                      </div>
                      
@@ -704,7 +730,7 @@
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="acc-body">
-                        <p>Сообщайте врачу о новых симптомах, усугублении старых, побочных эффектах терапии и результатах домашнего дневника.</p>
+                        <p>Сообщайте врачу и «инструктору адаптивной физической культуры» о новых симптомах, усугублении старых, побочных эффектах терапии и результатах домашнего дневника.</p>
                     </div>
                 </div>
 
@@ -1075,11 +1101,25 @@
             btn.innerHTML = isHidden ? 'Скрыть технику выполнения <i class="fa-solid fa-chevron-up"></i>' : 'Показать технику выполнения <i class="fa-solid fa-chevron-down"></i>';
         }
 
-        // Скрипт для Аккордеона (Самоконтроль)
-        function toggleAcc(header) {
-            const item = header.parentElement;
-            item.classList.toggle('active');
-        }
+         // Скрипт для Аккордеона (Самоконтроль)
+         function toggleAcc(header) {
+             const item = header.parentElement;
+             item.classList.toggle('active');
+         }
+
+         // Скрипт для переключения видео
+         function switchVideo(videoId, newSrc, button) {
+             const video = document.getElementById(videoId);
+             video.src = newSrc;
+             video.load(); // Перезагружаем видео
+             
+             // Убираем active класс у всех кнопок
+             const buttons = button.parentElement.querySelectorAll('.video-switch-btn');
+             buttons.forEach(btn => btn.classList.remove('active'));
+             
+             // Добавляем active класс к нажатой кнопке
+             button.classList.add('active');
+         }
     </script>
 </body>
 </html>
