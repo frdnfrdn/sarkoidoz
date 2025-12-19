@@ -883,7 +883,7 @@
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {alert('Спасибо! Ваши ответы успешно отправлены в базу данных.');}"></iframe>
 
                 <!-- FORM Action = Ссылка на Google Form Response -->
-                <form id="googleForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfuTlJ-GCRlv50GphGR-rCLUr9d2eKnzcljTSwjX-L-Mbnqnw/formResponse" method="POST" onsubmit="submitted=true;">
+                <form id="googleForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfuTlJ-GCRlv50GphGR-rCLUr9d2eKnzcljTSwjX-L-Mbnqnw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
                     
                     <!-- 1. Общее -->
                     <fieldset>
